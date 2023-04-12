@@ -3,21 +3,23 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 
 // REDUX SETUP
-import { createStore } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './reducers'
+import thunk from 'redux-thunk'
 
+const composeEnchancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
+  composeEnchancer(applyMiddleware(thunk))
+);
 
-const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(
-  <React.StrictMode>
+ReactDOM.createRoot(document.getElementById('root')).render(
+	<React.StrictMode>
     <Provider store={store}>
-      <App />
+		  <App />
     </Provider>
-  </React.StrictMode>,
+	</React.StrictMode>
 )
+

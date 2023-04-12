@@ -27,6 +27,6 @@ const nextYear = `${currentYear+1}-${currentMonth}-${currentDay}`
 // Popular Game
 const popular_games = `games?key=${MY_API_KEY}&dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`
 
-export const popularGamesURL = () => `${base_url}${popular_games}`
+export const popularGamesURL = () => `${base_url}${popular_games}`;
 
 
