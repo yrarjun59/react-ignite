@@ -4,12 +4,22 @@ import React from "react";
 import Home from "./pages/Home";
 import GlobalStyle from "./components/GlobalStyles"
 
+import { Route } from "react-router-dom";
+import GameDetail from "./components/GameDetail";
+
 function App() {
   
-return(
-  <div>
+return( 
+  <div className="App">
     <GlobalStyle/>
-    <Home/>
+      {/* <Routes> */}
+        
+
+        <Route path={["/game/:id", "/"]}>
+          <Home/>
+        </Route>
+        {/* <Route path="/" element={<Home/>}/> */}
+      {/* </Routes> */}
   </div>
 )
 }

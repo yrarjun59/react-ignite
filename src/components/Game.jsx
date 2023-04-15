@@ -3,14 +3,25 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 //Redux
 import { useDispatch } from "react-redux";
+// import { Link } from "react-router-dom";
+import {loadDetail} from "../actions/detailAction";
+import { gameDetailsURL } from "../api";
 import { Link } from "react-router-dom";
 
-function Game({name, released, image}) {
+function Game({name, released, image ,id}) {
+  // Load Details
+  const dispatch = useDispatch();
+  const loadDetailHandler = () => {
+    console.log(`${gameDetailsURL(id)}`)
+    dispatch(loadDetail(id))
+  }
   return (
-    <StyledGame>
-      <h3>{name}</h3>
-      <p>Released in {released}</p>
-      <img src={image} alt={name} />
+    <StyledGame onClick={loadDetailHandler}>
+      <Link to={`/game/${id}`}>
+        <h3>{name}</h3>
+        <p>Released in {released}</p>
+        <img src={image} alt={name} />
+      </Link>
     </StyledGame>
   )
 }

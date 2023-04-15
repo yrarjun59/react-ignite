@@ -18,8 +18,3 @@ export const loadGames = () => async (dispatch) =>{
      },
   });
 };
-
-
-
-
-
