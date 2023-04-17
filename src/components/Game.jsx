@@ -3,16 +3,16 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 //Redux
 import { useDispatch } from "react-redux";
-// import { Link } from "react-router-dom";
 import {loadDetail} from "../actions/detailAction";
 import { gameDetailsURL } from "../api";
 import { Link } from "react-router-dom";
 
 function Game({name, released, image ,id}) {
-  // Load Details
+  // Load Details Handler
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
     console.log(`${gameDetailsURL(id)}`)
+    document.body.style.overflow = 'hidden'; 
     dispatch(loadDetail(id))
   }
   return (

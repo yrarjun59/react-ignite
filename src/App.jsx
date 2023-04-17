@@ -5,21 +5,15 @@ import Home from "./pages/Home";
 import GlobalStyle from "./components/GlobalStyles"
 
 import { Route } from "react-router-dom";
-import GameDetail from "./components/GameDetail";
 
-function App() {
-  
+function App() {  
 return( 
   <div className="App">
     <GlobalStyle/>
       {/* <Routes> */}
-        
-
         <Route path={["/game/:id", "/"]}>
           <Home/>
         </Route>
-        {/* <Route path="/" element={<Home/>}/> */}
-      {/* </Routes> */}
   </div>
 )
 }
