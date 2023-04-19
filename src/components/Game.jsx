@@ -6,12 +6,12 @@ import { useDispatch } from "react-redux";
 import {loadDetail} from "../actions/detailAction";
 import { gameDetailsURL } from "../api";
 import { Link } from "react-router-dom";
+import { smallImage } from "../utils";
 
 function Game({name, released, image ,id}) {
   // Load Details Handler
   const dispatch = useDispatch();
   const loadDetailHandler = () => {
-    console.log(`${gameDetailsURL(id)}`)
     document.body.style.overflow = 'hidden'; 
     dispatch(loadDetail(id))
   }
@@ -20,7 +20,7 @@ function Game({name, released, image ,id}) {
       <Link to={`/game/${id}`}>
         <h3>{name}</h3>
         <p>Released in {released}</p>
-        <img src={image} alt={name} />
+        <img src={smallImage(image, 640)} alt={name} />
       </Link>
     </StyledGame>
   )
