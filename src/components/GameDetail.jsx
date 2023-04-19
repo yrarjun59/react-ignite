@@ -7,7 +7,18 @@ import { useSelector } from 'react-redux';
 import {useHistory} from "react-router-dom"
 import { smallImage } from '../utils';
 
+//IMAGES
+import playstation from "../assets/img/playstation.svg";
+import steam from "../assets/img/steam.svg";
+import xbox from "../assets/img/xbox.svg";
+import nintendo from "../assets/img/nintendo.svg";
+import apple from "../assets/img/apple.svg";
+import gamepad from "../assets/img/gamepad.svg";
+//Star Images
+import starEmpty from "../assets/img/star-empty.png";
+import starFull from "../assets/img/star-full.png";
 
+ 
 const  GameDetail = () => {
   const history = useHistory()
 
@@ -20,6 +31,39 @@ const  GameDetail = () => {
     }
   }
 
+  //Get Stars
+ const getStars = () => {
+  const stars = [];
+  const rating = Math.floor(game.rating);
+  for (let i = 1; i <= 5; i++) {
+    if (i <= rating) {
+      stars.push(<img alt="star" key={i} src={starFull}></img>);
+    } else {
+      stars.push(<img alt="star" key={i} src={starEmpty}></img>);
+    }
+  }
+  return stars;
+};
+
+  //GET PLATFORM IMAGES
+  const getPlatform = (platform) => {
+    switch (platform) {
+      case "PlayStation 4":
+        return playstation;
+      case "Xbox One":
+        return xbox;
+      case "PC":
+        return steam;
+      case "Nintendo Switch":
+        return nintendo;
+      case "iOS":
+        return apple;
+      default:
+        return gamepad;
+    }
+  };
+
+
   // Data
   const {screen, game, isLoading} = useSelector((state)=> state.detail)
   return (
@@ -31,12 +75,17 @@ const  GameDetail = () => {
           <div className="rating">
             <h3>{game.name}</h3>
             <p>Rating : {game.rating}</p>
+            {getStars()}
           </div>
           <Info>
             <h3>Platforms</h3>
             <Platforms>
             {game.platforms.map((data) => (
-              <h3 key={data.platform.id}>{data.platform.name}</h3>        
+              <img 
+              key={data.platform.id}
+              src={getPlatform(data.platform.name)}
+              alt={data.platform.id}
+              />        
               ))}
             </Platforms>
           </Info>
@@ -48,9 +97,9 @@ const  GameDetail = () => {
           <p>{game.description_raw}</p>
         </Description>
         <div className="gallery">
-                {screen.results.map((screen)=>(
-                  <img src={smallImage(screen.image, 1280)} key={screen.id} alt="game"/>
-                ))}
+          {screen.results.map((screen)=>(
+            <img src={smallImage(screen.image, 1280)} key={screen.id} alt="game"/>
+          ))}
         </div>
       </Detail>
     </CardShadow>
@@ -81,7 +130,6 @@ const CardShadow = styled(motion.div)`
     background: white;
   }
 `;
-
 const Detail = styled(motion.div)`
   width: 80%;
   border-radius: 1rem;
@@ -95,7 +143,6 @@ const Detail = styled(motion.div)`
     width: 100%;
   }
 `;
-
 const Stats = styled(motion.div)`
   display: flex;
   align-items: center;
@@ -116,14 +163,12 @@ const Platforms = styled(motion.div)`
     margin-left: 3rem;
   }
 `;
-
 const Media = styled(motion.div)`
   margin-top: 5rem;
   img {
     width: 100%;
   }
 `;
-
 const Description = styled(motion.div)`
   margin: 5rem 0rem;
 `;
