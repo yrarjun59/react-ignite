@@ -8,22 +8,20 @@ import { fetchSearch } from "../actions/gamesAction";
 import { useDispatch } from "react-redux";
 
 function Nav() {
-    const dispatch = useDispatch()
-    const [textInput, setTextInput] = useState("");
+    const dispatch = useDispatch();
+  const [textInput, setTextInput] = useState("");
 
-    const inputHandler = (e) => {
-        setTextInput(e.target.value); 
-    }
-
-    const submitSearch = (e) =>{
-        e.preventDefault();
-        dispatch(fetchSearch(textInput))
-        setTextInput("")
-    }
-
-    const clearSearched = () => {
-        dispatch({type:"CLEAR_SEARCHED"})
-    }
+  const inputHandler = (e) => {
+    setTextInput(e.target.value);
+  };
+  const submitSearch = (e) => {
+    e.preventDefault();
+    dispatch(fetchSearch(textInput));
+    setTextInput("");
+  };
+  const clearSearched = () => {
+    dispatch({ type: "CLEAR_SEARCHED" });
+  };
 
   return (
     <StyledNav>

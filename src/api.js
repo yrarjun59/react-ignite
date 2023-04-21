@@ -39,5 +39,3 @@ export const gameScreenshotsURL = (game_id) => `${base_url}games/${game_id}/scre
 // Searched Game
 export const searchGameURL = (game_name) => `${base_url}games?key=${MY_API_KEY}&search=${game_name}&page_size=9`;
 
-
-console.log(searchGameURL('freefire'))
