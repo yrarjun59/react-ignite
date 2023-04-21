@@ -1,6 +1,6 @@
 // BASE URL 
-const base_url = 'https://api.rawg.io/api/'
 const MY_API_KEY = "1ea7682af62147babc4b8d263d4ae142"
+const base_url = `https://api.rawg.io/api/`
 
 // getting date to dynamic update
 const getCurrentMonth = ()=>{
@@ -36,3 +36,8 @@ export const newGamesURL = () => `${base_url}${newGames}`;
 export const gameDetailsURL = (game_id) => `${base_url}games/${game_id}?key=${MY_API_KEY}`;
 //Screenshots
 export const gameScreenshotsURL = (game_id) => `${base_url}games/${game_id}/screenshots?key=${MY_API_KEY}`;
+// Searched Game
+export const searchGameURL = (game_name) => `${base_url}games?key=${MY_API_KEY}&search=${game_name}&page_size=9`;
+
+
+console.log(searchGameURL('freefire'))
