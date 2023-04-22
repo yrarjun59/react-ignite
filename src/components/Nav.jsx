@@ -18,6 +18,7 @@ function Nav() {
     e.preventDefault();
     dispatch(fetchSearch(textInput));
     setTextInput("");
+
   };
   const clearSearched = () => {
     dispatch({ type: "CLEAR_SEARCHED" });
@@ -30,7 +31,7 @@ function Nav() {
             <h1>Ignite</h1>
         </Logo>
         <form className="search">
-            <input onChange={inputHandler} type="text" />
+            <input onChange={inputHandler} type="text" value={textInput} />
             <button onClick={submitSearch} type="submit" >Search</button>
         </form>
     </StyledNav>
